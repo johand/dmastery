@@ -1,0 +1,22 @@
+#+TITLE: Assignment: Create A Multi-Service Multi-Node Web App
+
+- Using Docker's Distributed Voting App
+- use =swarm-app-1= directory in our course repo for requirements
+- 1 volume, 2 networks, and 5 services needed
+- Create the commands needed, spin up services, and test app
+- Everything is using Docker Hub images, so no data needed on Swarm
+- Like many computer thins, this is 1/2 art form and 1/2 science
+
+
+#+BEGIN_SRC bash
+    docker network create frontend --driver overlay
+    docker network create backend --driver overlay
+
+    docker service create --name vote --network frontend -p 80:80 --replicas 2 bretfisher/examplevotingapp_vote
+    docker service create --name redis --network frontend redis:3.2
+    docker service create --name worker --network frontend --network backend bretfisher/examplevotingapp_worker
+    docker service create --name db --network backend \
+           -e POSTGRES_HOST_AUTH_METHOD=trust \
+           --mount type=volume,source=db-data,target=/var/lib/postgresql/data postgres:9.4
+    docker service create --name result -p 5001:80 --network backend bretfisher/examplevotingapp_result
+#+END_SRC

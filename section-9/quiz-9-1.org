@@ -1,0 +1,37 @@
+#+TITLE: Quiz on Docker Swarm Basics
+
+*Question 1:*
+
+What is the swarm-wide bridge network driver where containers can communicate across nodes?
+
+- [ ] swarm
+- [ ] bridge
+- [ ] Dial-up
+- [X] overlay
+- [ ] muli-node
+
+*Question 2:*
+
+A service can be attached to many different networks at once.
+
+- [X] True
+- [ ] False
+
+*Question 3:*
+
+You need to manually choose and install a load balancer in order for Swarm to
+distribute incoming network connections evenly.
+
+- [X] False
+- [ ] True
+
+*Question 4:*
+
+If you have a 3 node swarm, with node names as follows: node1, node2, and
+node3. You run ~'docker service create -p 8088:80 nginx'~ from node1. Which node
+and port can you visit in a web browser to see the 'Welcome to Nginx' message?
+
+- [X] Any of the 3 nodes:8088
+- [ ] node3:80
+- [ ] node1:8088
+- [ ] localhost:8088
