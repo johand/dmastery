@@ -1,0 +1,27 @@
+#+TITLE: Quiz on Swarm Mode Basics
+
+*Question 1:*
+
+How do we initially begin a Swarm, activating Swarm Mode on a single node?
+
+- [ ] docker swarm start
+- [ ] docker swarm join
+- [X] docker swarm init
+- [ ] Swarm? Bees? RUN!!
+
+*Question 2:*
+
+To scale up a service to multiple containers, which of the following commands
+would you use?
+
+- [X] docker service update <service name> --replicas #
+- [ ] docker service update <service name> --scale #
+- [ ] This cannot be done in a single command
+
+*Question 3:*
+
+Once a node joins a swarm as a worker, it would have to leave the swarm and
+re-join to become a manager.
+
+- [X] False
+- [ ] True
