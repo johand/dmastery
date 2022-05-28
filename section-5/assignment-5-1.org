@@ -1,0 +1,15 @@
+#+TITLE: Assignment: Build Your Own DockerFile and Run Container From It
+
+- Dockerfiles are part process workflow and part art
+- Take existing Node.js app and Dockerize it
+- Make =Dockerfile=. Build it. Test it. Push it. (rm it). Run it.
+- Expect this to be iterative. Rarely do I get it right the first time
+- Details in =dockerfile-assignment-1/Dockerfile=
+- Use the Alpine version of the official ='node'= 6.x image
+- Expected result is web site at =http://localhost=
+
+
+#+BEGIN_SRC bash
+  docker image build -t assignment-4-1 .
+  docker container run -p 80:3000 --rm assignment-4-1
+#+END_SRC
