@@ -1,0 +1,28 @@
+#+TITLE: Container Quiz 2
+
+*Question 1:*
+
+Which command would we use to get an overview look of information about a
+specific container like Networks, IP address, mounts, and current status?
+
+- [ ] docker container top
+- [ ] docker container stats
+- [X] docker container inspect
+- [ ] docker container logs
+
+*Question 2:*
+
+In order to connect to a shell inside of a container, you should use docker ssh to get inside.
+
+- [ ] True
+- [X] False
+
+*Question 3:*
+
+If you wanted multiple containers to be able to communicate with each other on
+the same docker host, which network driver would you use?
+
+- [ ] container
+- [ ] overlay
+- [X] bridge
+- [ ] swarm
