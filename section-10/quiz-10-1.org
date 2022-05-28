@@ -1,0 +1,29 @@
+#+TITLE: Quiz on Swarm App Lifecycle
+
+*Question 1:*
+
+In order to spin up multiple services in a Swarm, we can just use
+'docker-compose up' and Docker will be able to tell this is a Swarm and will
+deploy services across all nodes.
+
+- [ ] True
+- [X] False
+
+*Question 2:*
+
+In order to update a service that was initially deployed in a stack command, we
+would need to do a "docker stack rm", make our changes, then re-deploy.
+
+- [ ] True
+- [X] False
+
+*Question 3:*
+
+What does the "--start-period" option of the healthcheck do?
+
+- [ ] It is a restart interval in which the service will restart every 'x'
+  minutes until it is healty
+- [ ] It is a flag that alarms if a service stays healthy longer than 'x' minutes
+- [X] Adds a buffer of time to allow a service to start up before alarming on a
+  failed healthcheck
+- [ ] It mean "the service will start...PERIOD."
