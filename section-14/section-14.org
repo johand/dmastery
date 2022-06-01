@@ -1,0 +1,51 @@
+#+TITLE: Kubernetes Install And Your First Pods
+
+** Kubectl run, create, and apply
+
+#+BEGIN_SRC bash
+  kubectl run # (changing to be only for pod creation)
+  kubectl create # (create some resources via CLI or YAML)
+  kubectl apply # (create/update anything via YAML)
+#+END_SRC
+
+** Our first pod with with kubectl run
+
+- Let's run a pod of the nginx web server!
+  - ~kubectl create deployment nginx --image nginx~
+- Let's list the pod
+  - ~kubectl get pods~
+- Let's see all objects
+  - ~kubectl get all~
+- Let's remove the Deployment
+  - ~kubectl delete deployment my-nginx~
+
+** Scaling ReplicaSets
+
+- Start a new deployment for one replica/pod
+  - ~kubectl create deployment my-apache --image httpd~
+- Let's scale it up with another pod
+  #+BEGIN_SRC bash
+    kubectl scale deploy/my-apache --replicas 2
+    kubectl scale deployment my-apache --replicas 2
+  #+END_SRC
+
+  - Those are the same command
+  - deploy = deployment = deployments
+
+** Inspecting Kubernetes Objects
+
+- Get container logs
+  #+BEGIN_SRC bash
+    kubectl logs deployment/my-apache
+    kubectl logs deployment/my-apache --follow --tail 1
+    kubectl logs -l app=my-apache
+  #+END_SRC
+
+- Get a bunch of details about an object, including events!
+  - ~kubectl describe pod/my-apache-xxxx-yyyy~
+- Watch a command (without needing ~watch~)
+  - ~kubectl get pods -w~
+- Delete pod
+  - ~kubectl delete pod/my-apache-xxxx-yyyy~
+- Let's remove the Deployment
+  - ~kubectl delete deployment my-apache~
