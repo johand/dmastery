@@ -1,0 +1,64 @@
+#+TITLE: Exposing Kubernetes Ports
+
+** Inspecting ClusterIP Service
+
+- Open two shell windows so we can watch this
+  - ~kubectl get pods -w~
+
+- In second window, lets start a simple http server using sample code
+  - ~kubectl create deployment httpenv --image=bretfisher/httpenv~
+
+- Scale it to 5 replicas
+  - ~kubectl scale deployment/httpenv --replicas=5~
+
+- Let's create a ClusterIP service (default)
+  - ~kubectl expose deployment/httpenv --port 8888~
+
+- Look up what IP was allocated
+  - ~kubectl get service~
+
+- Remember this IP is cluster internal only, how do we curl it?
+
+  #+BEGIN_SRC bash
+    kubectl run tmp-shell --rm -it --image bretfisher/netshoot -- bash
+    curl httpenv:8888
+  #+END_SRC
+
+- If you're on Linux host
+  - ~curl [ip of service]:8888~
+
+** Create a NodePort Service
+
+- Let's expose a NodePort so we can access it via the host IP (including
+  localhost on Windows/Linux/macOS)
+  - ~kubectl expose deployment/httpenv --port 8888 --name httpenv-np --type NodePort~
+
+- Did you know that a NodePort service algo creates a ClusterIP?
+
+- These three service types are additive, each one creates the ones above it:
+  - ClusterIP
+  - NodePort
+  - LoadBalancer
+
+** Add a LoadBalancer Service
+
+- If you're on Docker Desktop, it provides a built-in LoadBalancer that
+  publishes the =--port= on localhost
+
+  #+BEGIN_SRC bash
+    kubectl expose deployment/httpenv --port 8888 --name httpenv-lb --type LoadBalancer
+    curl localhost:8888
+  #+END_SRC
+
+- If you're on kubeadm, minikube, or microk8s
+  - No built-in LB
+  - You can stil run the command, it'l just say at "pending" (but its NodePort works)
+
+** Cleanup
+
+- Let's remove the Services and Deployment
+
+  #+BEGIN_SRC bash
+    kubectl delete service/httpenv service/httpenv-np
+    kubectl delete service/httpenv-lb deployment/httpenv
+  #+END_SRC
