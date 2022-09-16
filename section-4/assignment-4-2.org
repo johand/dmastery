@@ -10,7 +10,7 @@
 - Check ~curl --version~
 
 #+BEGIN_SRC bash
-  docker container run -ipt --rm ubuntu:14.04 bash
+  docker container run -it --rm ubuntu:14.04 bash
   apt-get update && apt-get install -y curl
   curl --version
 
